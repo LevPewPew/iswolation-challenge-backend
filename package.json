@@ -4,7 +4,9 @@
   "description": "A boiler plate for a react backend in a MERN app. Some values are placeholders and should be removed as appropriate.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
