@@ -6,13 +6,13 @@ require('dotenv').config();
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5009;
 const DB_URL = process.env.DB_URL;
 const dbConfig = { useNewUrlParser: true, useUnifiedTopology: true };
 const whitelist = ['http://localhost:3000', 'https://FRONT-END-URL-PLACEHOLDER']; // REPLACE
 const corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
