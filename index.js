@@ -12,7 +12,7 @@ const dbConfig = { useNewUrlParser: true, useUnifiedTopology: true };
 const whitelist = ['http://localhost:3000', 'https://FRONT-END-URL-PLACEHOLDER']; // REPLACE
 const corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
+    if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
