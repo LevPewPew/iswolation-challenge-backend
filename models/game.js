@@ -10,7 +10,7 @@ const MAX_PLAYERS_COUNT = 100; // 100, UX design decision
 const MIN_EXERCISE_NAME_CHARS = 1; // no blank names
 const MAX_EXERCISE_NAME_CHARS = 18;  // 18 chosen to make frontend display logic easier
 const MIN_EXERCISES_COUNT = 1; // less than 1 player is pointless
-const MAX_EXERCISES_COUNT = 2;  // 100, UX design decision
+const MAX_EXERCISES_COUNT = 10;  // 10, UX design decision
 const MIN_REPS_COUNT = 1; // less than 1 rep is pointless
 const MAX_REPS_COUNT = 999; // 999 chosen to make frontend display logic easier, and also to prevent people from killing themselves reaching crazy reps
 
