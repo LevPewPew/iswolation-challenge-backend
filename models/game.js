@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MIN_GROUP_NAME_CHARS = 1; // no blank names
-const MAX_GROUP_NAME_CHARS = 15; // 15 chosen to make frontend display logic easier
+const MAX_GROUP_NAME_CHARS = 20; // 20 chosen to make frontend display logic easier
 const MIN_PLAYERS_CHARS = 1; // no blank names
 const MAX_PLAYERS_CHARS = 16; // 16 chosen to make frontend display logic easier
 const MIN_PLAYERS_LENGTH = 1; // less than 1 player is pointless
