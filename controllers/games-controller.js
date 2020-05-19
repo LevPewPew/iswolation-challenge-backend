@@ -1,7 +1,7 @@
 const Game = require('../models/game');
 
 const read = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
 
   try {
     const game = await Game.findOne({_id: id});
@@ -15,11 +15,17 @@ const create = async (req, res) => {
   const {
     groupName,
     players,
-    exercises
+    exercises,
+    gameStateId
   } = req.body;
   
   try {
-    const newGame = await Game.create({ groupName, players, exercises });
+    const newGame = await Game.create({
+      groupName,
+      players,
+      exercises,
+      gameStateId
+    });
     res.send(newGame);
   } catch (err) {
     res.status(400).send(err);
