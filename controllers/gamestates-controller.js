@@ -7,7 +7,6 @@ const read = async (req, res) => {
   try {
     const gamestate = await Gamestate.findOne({gameId: gameId});
     if (!gamestate) {
-      console.log("this RAN");
       const game = await Game.findOne({_id: gameId});
       console.log(game);
       const players = buildGamestatePlayers(game);
@@ -16,15 +15,13 @@ const read = async (req, res) => {
         gameId
         // expireAt: moment().add(60, 'seconds')
       });
-      console.log("BAMBAM");
-      console.log(newGamestate);
       res.send(newGamestate);
     }
     res.send(gamestate);
   } catch (err) {
     res.status(404).send(err);
   }
-}
+};
 
 const create = async (req, res) => {
   const {
@@ -38,14 +35,34 @@ const create = async (req, res) => {
     });
     res.send(newGamestate);
   } catch (err) {
-    res.status(400).send(err);
+    res.status(418).send(err);
   }
-}
+};
+
+const update = async (req, res) => {
+  const { gameId } = req.params;
+  const {
+    player,
+    exercise,
+    completedReps
+  } = req.body;
+
+  try {
+    await Gamestate.updateOne(
+      {gameId},
+      {$set: {"players.$[player].exercises.$[exercise].completedReps": completedReps}},
+      {arrayFilters: [{"player.name": player}, {"exercise.name": exercise}]}
+    );
+    // res.send(newGamestate);
+  } catch (err) {
+    res.status(418).send(err);
+  }
+};
 
 function buildGamestatePlayers(game) {
   const playerNames = game.players.map((playerName) => playerName);
   const exerciseNames = game.exercises.map((exercise) => exercise.name);
-  const exercises = []
+  const exercises = [];
   const players = [];
   exerciseNames.forEach((exerciseName) => {
     exercises.push(
@@ -69,5 +86,6 @@ function buildGamestatePlayers(game) {
 
 module.exports = {
   read,
-  create
+  create,
+  update
 }

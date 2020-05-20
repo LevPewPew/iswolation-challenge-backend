@@ -9,7 +9,7 @@ const read = async (req, res) => {
   } catch (err) {
     res.status(404).send(err);
   }
-}
+};
 
 const create = async (req, res) => {
   const {
@@ -28,9 +28,9 @@ const create = async (req, res) => {
     });
     res.send(newGame);
   } catch (err) {
-    res.status(400).send(err);
+    res.status(418).send(err);
   }
-}
+};
 
 module.exports = {
   read,
