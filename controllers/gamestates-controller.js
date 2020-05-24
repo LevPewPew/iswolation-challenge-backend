@@ -53,7 +53,7 @@ const update = async (req, res) => {
       {$set: {"players.$[player].exercises.$[exercise].completedReps": completedReps}},
       {arrayFilters: [{"player.name": player}, {"exercise.name": exercise}]}
     );
-    // res.send(newGamestate);
+    res.status(200).send(`Successfully changed ${player}'s ${exercise} reps to completedReps`);
   } catch (err) {
     res.status(418).send(err);
   }
