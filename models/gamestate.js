@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const gamestateSchema = new Schema(
-  // TODO LEFTOFF fix up gamepage so that it GETs this document, or POSTS one with 0 reps if it doesn't
   {
     players: {
       type: [
@@ -28,9 +27,11 @@ const gamestateSchema = new Schema(
     gameId: {
       type: String,
       required: true
+    },
+    expireAt: {
+      type: Date,
+      required: true
     }
-    // TODO expire at 00:00 local time
-    // expireAt: { type: Date, default: new Date('May 11, 2020 19:46:00') }
   },
   {
     timestamps: true

@@ -2,38 +2,28 @@ const Gamestate = require('../models/gamestate');
 const Game = require('../models/game');
 
 const read = async (req, res) => {
+  // IMPORTANT: for some reason headers messes around with camel case, so this header must be localmidnight not localMidnight
+  const  { localmidnight }  = req.headers;
   const { gameId } = req.params;
 
   try {
     const gamestate = await Gamestate.findOne({gameId: gameId});
-    if (!gamestate) {
-      const game = await Game.findOne({_id: gameId});
-      console.log(game);
-      const players = buildGamestatePlayers(game);
-      const newGamestate = await Gamestate.create({
-        players,
-        gameId
-        // expireAt: moment().add(60, 'seconds')
-      });
-      res.send(newGamestate);
+    if (gamestate) {
+      res.send(gamestate);
+    } else {
+      try {
+        const game = await Game.findOne({_id: gameId});
+        const players = buildGamestatePlayers(game);
+        const newGamestate = await Gamestate.create({
+          players,
+          gameId,
+          expireAt: localmidnight
+        });
+        res.send(newGamestate);
+      } catch (err) {
+        res.status(418).send(err);
+      }
     }
-    res.send(gamestate);
-  } catch (err) {
-    res.status(404).send(err);
-  }
-};
-
-const create = async (req, res) => {
-  const {
-    players,
-  } = req.body;
-  
-  try {
-    const newGamestate = await Gamestate.create({
-      players,
-      // expireAt: moment().add(60, 'seconds')
-    });
-    res.send(newGamestate);
   } catch (err) {
     res.status(418).send(err);
   }
@@ -86,6 +76,5 @@ function buildGamestatePlayers(game) {
 
 module.exports = {
   read,
-  create,
   update
 }
