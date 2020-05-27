@@ -77,4 +77,4 @@ function buildGamestatePlayers(game) {
 module.exports = {
   read,
   update
-}
+};

@@ -32,7 +32,7 @@ const gameSchema = new Schema(
           required: true
         }
       ],
-      validate: [playersLengthLimit, `Must have between ${MIN_PLAYERS_LENGTH} and ${MAX_PLAYERS_LENGTH} players to begin`],
+      validate: [playersLengthLimit, `Must have between ${MIN_PLAYERS_LENGTH} and ${MAX_PLAYERS_LENGTH} players to begin`]
     },
     exercises: {
       type: [
@@ -52,7 +52,7 @@ const gameSchema = new Schema(
           }
         }
       ],
-      validate: [exercisesLengthLimit, `Must have between ${MIN_PLAYERS_LENGTH} and ${MAX_PLAYERS_LENGTH} players to begin`],
+      validate: [exercisesLengthLimit, `Must have between ${MIN_PLAYERS_LENGTH} and ${MAX_PLAYERS_LENGTH} players to begin`]
     }
   },
   {
