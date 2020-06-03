@@ -54,9 +54,6 @@ const gameSchema = new Schema(
       ],
       validate: [exercisesLengthLimit, `Must have between ${MIN_PLAYERS_LENGTH} and ${MAX_PLAYERS_LENGTH} players to begin`]
     }
-  },
-  {
-    timestamps: true
   }
 );
 
