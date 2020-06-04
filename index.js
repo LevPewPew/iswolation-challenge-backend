@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5009;
 const DB_URL = process.env.DB_URL;
 const dbConfig = { useNewUrlParser: true, useUnifiedTopology: true };
-const whitelist = ['http://localhost:3000', 'https://FRONT-END-URL-PLACEHOLDER']; // REPLACE
+const whitelist = ['https://iswolationchallenge.netlify.app'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
